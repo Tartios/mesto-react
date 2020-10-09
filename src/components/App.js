@@ -6,13 +6,6 @@ import Footer from './Footer.js';
 
 function App() {
   return (
-    
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mesto Russia</title>
-  </head>
   <body class="page">
     <div class="popup popup_type_avatar">
       <div class="popup__container">
@@ -130,8 +123,6 @@ function App() {
       </div>
     </template>
   </body>
-</html>
-
   );
 }
 
