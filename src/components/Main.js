@@ -1,35 +1,31 @@
 import React from "react";
-import Api from "./Api.js";
+import { api } from "../utils/Api.js";
+import Card from "./Card.js";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
-  const [userName, setUserName] = React.useState('Я и ты');
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
+  const [userName, setUserName] = React.useState("");
 
-  const [userDescription, setUserDescription] = React.useState('Ты и я');
+  const [userDescription, setUserDescription] = React.useState("");
 
-  const [userAvatar, setUserAvatar] = React.useState(
-    "https://store.playstation.com/store/api/chihiro/00_09_000/container/RU/ru/999/EP0082-CUSA02487_00-AV00000000000008/1591334423000/image?w=240&h=240&bg_color=000000&opacity=100&_version=00_09_000"
-  );
-  const myID = "b7f21f02-0f3c-4a3e-ae62-e9761e3102fc";
-  const userID = "ccc3841f08657ff5c04cac75";
-  const api = new Api({
-    url: "https://mesto.nomoreparties.co/v1/cohort-15",
-    id: myID
-  });
+  const [userAvatar, setUserAvatar] = React.useState("");
+
+  const [cards, setNewCards] = React.useState([]);
+  // const myID = "b7f21f02-0f3c-4a3e-ae62-e9761e3102fc";
+  // const userID = "ccc3841f08657ff5c04cac75";
 
   React.useEffect(() => {
-    api
-    .getAppInfo()
-    .then((res) => {
-      const [cardInfo, userData] = res;
-    })
+    api.getUserInfo().then((res) => {
+      setUserName(res.name);
+      setUserDescription(res.about);
+      setUserAvatar(res.avatar);
+    });
+  }, []);
 
-    api.getUserInfo()
-    .then((res) => {
-      setUserName.setUserInfo(res);
-    })
-  }) //тут нужно посмотреть как апи передавать в разметку, это в лайвкодинге было
-
-
+  React.useEffect(() => {
+    api.getInitialCards().then((res) => {
+      setNewCards(res);
+    });
+  }, []);
   return (
     <main>
       <section className="profile">
@@ -40,8 +36,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
         ></button>
         <div className="profile__info">
           <div className="profile__info-input">
-  <h1 className="profile__name">{userName}</h1>
-  <p className="profile__prof">{userDescription}</p>
+            <h1 className="profile__name">{userName}</h1>
+            <p className="profile__prof">{userDescription}</p>
           </div>
           <button
             type="button"
@@ -55,7 +51,11 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
           onClick={onAddPlace}
         ></button>
       </section>
-      <section className="foto-grid"></section>
+      <section className="foto-grid">
+        {cards.map((item) => (
+          <Card key={item._id} onCardClick={onCardClick} card={item} />
+        ))}
+      </section>
     </main>
   );
 }

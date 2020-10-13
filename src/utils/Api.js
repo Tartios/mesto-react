@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor(options) {
     this._url = options.url;
     this._id = options.id;
@@ -119,3 +119,8 @@ export default class Api {
     }).then(this._getResponceData);
   }
 }
+
+export const api = new Api({
+  url: "https://mesto.nomoreparties.co/v1/cohort-15",
+  id: "b7f21f02-0f3c-4a3e-ae62-e9761e3102fc"
+})
