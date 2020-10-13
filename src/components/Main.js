@@ -10,8 +10,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [userAvatar, setUserAvatar] = React.useState("");
 
   const [cards, setNewCards] = React.useState([]);
-  // const myID = "b7f21f02-0f3c-4a3e-ae62-e9761e3102fc";
-  // const userID = "ccc3841f08657ff5c04cac75";
 
   React.useEffect(() => {
     api.getUserInfo().then((res) => {
