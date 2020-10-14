@@ -48,64 +48,52 @@ function App() {
         children=""
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
-        <form action="#" className="popup__form" noValidate>
-          <input
-            name="link"
-            type="url"
-            id="link-input"
-            className="popup__input popup__input_link"
-            placeholder="Ссылка на аватар"
-            required
-          />
-          <span id="link-input-error" className="popup__input-error"></span>
-          <button
-            type="submit"
-            className="popup__save-button popup__save-button_block"
-            disabled
-          >
-            Сохранить
-          </button>
-        </form>
+        <input
+          name="link"
+          type="url"
+          id="link-input"
+          className="popup__input popup__input_link"
+          placeholder="Ссылка на аватар"
+          required
+        />
+        <span id="link-input-error" className="popup__input-error"></span>
       </PopupWithForm>
 
-      <PopupWithForm title="Вы уверены?" name="card-delete">
-        <button type="submit" className="popup__save-button">
-          Да
-        </button>
-      </PopupWithForm>
+      <PopupWithForm
+        title="Вы уверены?"
+        name="card-delete"
+        buttonText="Да"
+      ></PopupWithForm>
 
       <PopupWithForm
         title="Редактировать профиль"
         name="profile"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Сохранить"
       >
-        <form action="#" className="popup__form" noValidate>
-          <input
-            name="name"
-            type="text"
-            id="name-input"
-            className="popup__input popup__input_name"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span id="name-input-error" className="popup__input-error"></span>
-          <input
-            name="about"
-            type="text"
-            id="self-input"
-            className="popup__input popup__input_prof"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span id="self-input-error" className="popup__input-error"></span>
-          <button type="submit" className="popup__save-button">
-            Сохранить
-          </button>
-        </form>
+        <input
+          name="name"
+          type="text"
+          id="name-input"
+          className="popup__input popup__input_name"
+          minLength="2"
+          maxLength="40"
+          required
+        />
+        <span id="name-input-error" className="popup__input-error"></span>
+        <input
+          name="about"
+          type="text"
+          id="self-input"
+          className="popup__input popup__input_prof"
+          minLength="2"
+          maxLength="200"
+          required
+        />
+        <span id="self-input-error" className="popup__input-error"></span>
       </PopupWithForm>
 
       <PopupWithForm
@@ -113,37 +101,29 @@ function App() {
         name="add"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        buttonText="Создать"
       >
         {" "}
-        <form action="#" className="popup__form" noValidate>
-          <input
-            name="name"
-            type="text"
-            id="mark-input"
-            className="popup__input popup__input_mark"
-            placeholder="Название"
-            minLength="1"
-            maxLength="30"
-            required
-          />
-          <span id="mark-input-error" className="popup__input-error"></span>
-          <input
-            name="link"
-            type="url"
-            id="link-input"
-            className="popup__input popup__input_link"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span id="link-input-error" className="popup__input-error"></span>
-          <button
-            type="submit"
-            className="popup__save-button popup__save-button_block"
-            disabled
-          >
-            Создать
-          </button>
-        </form>
+        <input
+          name="name"
+          type="text"
+          id="mark-input"
+          className="popup__input popup__input_mark"
+          placeholder="Название"
+          minLength="1"
+          maxLength="30"
+          required
+        />
+        <span id="mark-input-error" className="popup__input-error"></span>
+        <input
+          name="link"
+          type="url"
+          id="link-input"
+          className="popup__input popup__input_link"
+          placeholder="Ссылка на картинку"
+          required
+        />
+        <span id="link-input-error" className="popup__input-error"></span>
       </PopupWithForm>
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <Header />
