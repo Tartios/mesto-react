@@ -77,15 +77,15 @@ function App() {
   }
 
   function handleDeleteCard(card) {
-    // api
-    //   .deleteCard(card._id)
-    //   .then(() => {
-    //     const newCards = cards.filter((c) => {
-    //       return c._id !== card._id;
-    //     });
-    //     setNewCards(newCards);
-    //   })
-    //   .catch((err) => console.log(err));
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((c) => {
+          return c._id !== card._id;
+        });
+        setNewCards(newCards);
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleUpdateUser({ name, about }) {
