@@ -21,7 +21,7 @@ export default function Card({ card, onCardClick, onLikeClick, onDeleteCard }) {
   const isOwn = card.owner._id === currentUser._id;
 
   const cardDeleteButtonClassName = `${
-    isOwn ? "foto-grid__delete-button_invisible" : ""
+    isOwn ? "" : "foto-grid__delete-button_invisible"
   }`;
 
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
