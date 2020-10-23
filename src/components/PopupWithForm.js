@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 
 export default function PopupWithForm({
   title,
@@ -7,6 +7,7 @@ export default function PopupWithForm({
   isOpen,
   onClose,
   buttonText,
+  onSubmit,
 }) {
   return (
     <div className={`popup popup_type_${name} ${isOpen && "popup_open"} `}>
@@ -17,13 +18,9 @@ export default function PopupWithForm({
           className="popup__close-button"
         ></button>
         <h3 className="popup__title">{title}</h3>{" "}
-        <form action="#" className="popup__form" noValidate>
+        <form action="#" className="popup__form" onSubmit={onSubmit} noValidate>
           {children}
-          <button
-            type="submit"
-            className="popup__save-button popup__save-button_block"
-            disabled
-          >
+          <button type="submit" className="popup__save-button">
             {buttonText}
           </button>
         </form>

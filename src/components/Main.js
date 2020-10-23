@@ -4,41 +4,18 @@ import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import { arrCards } from "../contexts/CardsContext.js";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  // const [userName, setUserName] = React.useState("");
-
-  // const [userDescription, setUserDescription] = React.useState("");
-
-  // const [userAvatar, setUserAvatar] = React.useState("");
-
-  // const [cards, setNewCards] = React.useState([]);
-
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onLikeClick,
+  onDeleteCard,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const cards = React.useContext(arrCards);
-  // React.useEffect(() => {
-  //   api
-  //     .getUserInfo()
-  //     .then((res) => {
-  //       setUserName(res.name);
-  //       setUserDescription(res.about);
-  //       setUserAvatar(res.avatar);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
-  // React.useEffect(() => {
-  //   api
-  //     .getInitialCards()
-  //     .then((res) => {
-  //       setNewCards(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
   return (
     <main>
       <section className="profile">
@@ -66,7 +43,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
       <section className="foto-grid">
         {cards.map((item) => (
-          <Card key={item._id} onCardClick={onCardClick} card={item} />
+          <Card
+            key={item._id}
+            onCardClick={onCardClick}
+            onLikeClick={onLikeClick}
+            onDeleteCard={onDeleteCard}
+            card={item}
+          />
         ))}
       </section>
     </main>

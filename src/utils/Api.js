@@ -35,7 +35,7 @@ class Api {
     }).then(this._getResponceData);
   }
 
-  patchUserInfo(data) {
+  patchUserInfo({name, about}) {
     return fetch(`${this._url}/users/me`, {
       headers: {
         authorization: this._id,
@@ -45,13 +45,13 @@ class Api {
       method: "PATCH",
 
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name: name,
+        about: about,
       }),
     }).then(this._getResponceData);
   }
 
-  postNewCard(data) {
+  postNewCard({name, link}) {
     return fetch(`${this._url}/cards`, {
       headers: {
         authorization: this._id,
@@ -61,8 +61,8 @@ class Api {
       method: "POST",
 
       body: JSON.stringify({
-        name: data.name,
-        link: data.link,
+        name: name,
+        link: link,
       }),
     }).then(this._getResponceData);
   }
@@ -104,7 +104,7 @@ class Api {
     }).then(this._getResponceData);
   }
 
-  setNewAvatar(data) {
+  setNewAvatar({avatar}) {
     return fetch(`${this._url}/users/me/avatar`, {
       headers: {
         authorization: this._id,
@@ -114,7 +114,7 @@ class Api {
       method: "PATCH",
 
       body: JSON.stringify({
-        avatar: data.link,
+        avatar: avatar,
       }),
     }).then(this._getResponceData);
   }
