@@ -8,7 +8,7 @@ import EditProfilePopup from "./EditProfilePopup.js";
 import ImagePopup from "./ImagePopup.js";
 import { api } from "../utils/Api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import { arrCards } from "../contexts/CardsContext.js";
+import { ArrCards } from "../contexts/CardsContext.js";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 
@@ -66,12 +66,18 @@ function App() {
         const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
 
         setNewCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     } else {
       api.deleteLikeCard(card._id).then((newCard) => {
         const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
 
         setNewCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     }
   }
@@ -92,6 +98,9 @@ function App() {
     api.patchUserInfo({ name, about }).then((res) => {
       setCurrentUser(res);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
@@ -99,6 +108,9 @@ function App() {
     api.setNewAvatar({ avatar }).then((res) => {
       setCurrentUser(res);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
@@ -106,17 +118,11 @@ function App() {
     api.postNewCard({ name, link }).then((newCard) => {
       setNewCards([newCard, ...cards]);
       closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
-
-  // const isLiked = cards.likes.some(i => i._id === currentUser._id);
-
-  // function handleLikeCard() {
-  //   api.likeCard(cards._id)
-  //   .then(() => {
-
-  //   })
-  // }
 
   //--------------------- КАРТОЧКИ ----------------//
 
@@ -136,7 +142,7 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <arrCards.Provider value={cards}>
+        <ArrCards.Provider value={cards}>
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
@@ -172,7 +178,7 @@ function App() {
             onDeleteCard={handleDeleteCard}
           />
           <Footer />
-        </arrCards.Provider>
+        </ArrCards.Provider>
       </CurrentUserContext.Provider>
     </div>
   );

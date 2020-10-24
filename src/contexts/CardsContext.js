@@ -1,2 +1,2 @@
 import React from "react";
-export const arrCards = React.createContext();
+export const ArrCards = React.createContext();

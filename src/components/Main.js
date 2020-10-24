@@ -1,8 +1,7 @@
 import React from "react";
-import { api } from "../utils/Api.js";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import { arrCards } from "../contexts/CardsContext.js";
+import { ArrCards } from "../contexts/CardsContext.js";
 
 function Main({
   onEditProfile,
@@ -14,7 +13,7 @@ function Main({
 }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const cards = React.useContext(arrCards);
+  const cards = React.useContext(ArrCards);
 
   return (
     <main>

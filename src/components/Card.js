@@ -1,9 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-import { arrCards } from "../contexts/CardsContext.js";
 
 export default function Card({ card, onCardClick, onLikeClick, onDeleteCard }) {
-  const cards = React.useContext(arrCards);
   function handleClick() {
     onCardClick(card);
   }
@@ -20,9 +18,9 @@ export default function Card({ card, onCardClick, onLikeClick, onDeleteCard }) {
 
   const isOwn = card.owner._id === currentUser._id;
 
-  const cardDeleteButtonClassName = `${
-    isOwn ? "" : "foto-grid__delete-button_invisible"
-  }`;
+  // const cardDeleteButtonClassName = `${
+  //   isOwn ? "" : "foto-grid__delete-button_invisible"
+  // }`;
 
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -40,10 +38,10 @@ export default function Card({ card, onCardClick, onLikeClick, onDeleteCard }) {
           onClick={handleClick}
         />
       </button>
-      <button
-        className={`foto-grid__delete-button ${cardDeleteButtonClassName}`}
-        onClick={handleDeleteCard}
-      ></button>
+      {isOwn && <button
+   className='foto-grid__delete-button'
+   onClick={handleDeleteCard}
+/>}
       <div className="foto-grid__card">
         <h2 className="foto-grid__title">{card.name}</h2>
         <div>
